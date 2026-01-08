@@ -8,6 +8,9 @@ For the initial GLS rollout, the detection strategy focused on securing the prim
 ## Integrated Data Sources
 To power these detections, I enabled the following native connectors:
 * **Microsoft Entra ID:** To monitor authentication patterns and administrative changes.
+
+To power the high-fidelity detections for the 500-user baseline, I orchestrated the integration of Microsoft Entra ID. By streaming Sign-in and Audit logs into the central workspace, we established visibility into the identity perimeter—specifically allowing for the detection of MFA-bypass techniques used against regional shipping staff.
+
 * **Microsoft Defender XDR:** To ingest endpoint and email telemetry for cross-domain correlation.
 
 ## Baseline Analytics Rules
