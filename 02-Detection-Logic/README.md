@@ -28,7 +28,9 @@ The following rules were configured to identify account takeover attempts and ph
 * **Goal:** Protect GLS shipping manifests and proprietary logistics data from "wiper" attacks or disgruntled employee activity.
 * **Logic:** Triggers on a high volume of file deletions in SharePoint or OneDrive within a short burst.
 
-## ⚙️ Technical Configuration & KQL Logic
+## ⚙️ Technical Configuration & KQL Logic (Pending Deployment)
+
+Status: 🟡 Pending Environment Finalization The logic and navigation steps below represent the verified configuration plan for the GLS 500-user baseline. Full deployment and log validation screenshots will be updated upon the finalization of the dedicated Azure lab environment.
 
 ### 1. MFA Fatigue Implementation
 To detect this pattern, I configured a custom scheduled query rule.
