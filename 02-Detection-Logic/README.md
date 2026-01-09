@@ -28,5 +28,21 @@ The following rules were configured to identify account takeover attempts and ph
 * **Goal:** Protect GLS shipping manifests and proprietary logistics data from "wiper" attacks or disgruntled employee activity.
 * **Logic:** Triggers on a high volume of file deletions in SharePoint or OneDrive within a short burst.
 
+## ⚙️ Technical Configuration & KQL Logic
+
+### 1. MFA Fatigue Implementation
+To detect this pattern, I configured a custom scheduled query rule.
+* **Query Logic:** Specifically joins `SigninLogs` to identify multiple `ResultType 500121` failures followed by a success for the same account.
+* **Threshold:** Configured to trigger when 3+ rejections occur within a 10-minute sliding window.
+
+### 2. Impossible Travel Configuration
+I utilized the Microsoft Security analytical template to leverage Entra ID's behavioral engine.
+* **Data Mapping:** This rule correlates the `SigninLogs` IP address data with global geographic databases.
+* **GLS Context:** Crucial for identifying if shipping portal credentials were leaked and used outside of known regional logistics hubs.
+
+### 3. Mass Cloud File Deletion Setup
+This rule monitors the `OfficeActivity` table for high-volume data destruction.
+* **Tuning:** Thresholds were set to 50+ file deletions in 1 minute to distinguish between "Wiper" attacks and standard user organization.
+
 ## Logic Validation
 Each rule was manually tuned during the first 30 days to establish a baseline for "normal" logistics operations, reducing false positives from regional shipping staff accessing the portal via various VPN exit nodes.
