@@ -14,6 +14,16 @@ Establishing a consistent response workflow was vital to ensure that detected th
 3. **Containment:** Manual execution of response actions, such as "Isolate Device" or "Reset Password," directly from the incident page.
 4. **Remediation & Closure:** Documenting root causes and closing incidents to maintain a clean SOC queue.
 
+🕵️ Deep-Dive Analysis: Investigation Graph
+To perform root-cause analysis, I utilized the Microsoft Defender Investigation Graph. This allowed me to visualize the relationship between compromised Entra ID accounts and affected regional endpoints, drastically reducing the time required to identify the scope of lateral movement within the 500-user hub.
+
+## Technical Execution Steps:
+
+1. **Incident Selection:** Navigate to Incidents & alerts > Incidents and select a high-priority alert (e.g., MFA Fatigue).
+2. **Access Graph:** Click the Graph tab to view the visual attack story.
+3. **Trace Entities:** Use the graph nodes to follow the path from the initial User compromise to the Regional Workstation and any subsequent File deletions.
+4. **Confirm Blast Radius:** Identify if the threat moved to other accounts or devices to ensure a complete containment strategy, such as triggering an "Isolate Device" action.
+
 ## Management Visibility: The "Single Pane of Glass"
 [cite_start]To provide the GLS leadership team with real-time security insights, I deployed **Microsoft Sentinel Workbooks**[cite: 11].
 
